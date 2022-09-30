@@ -35,15 +35,15 @@ class SampleChannel extends HangyeolChannelInterface {
   }) : super(url, payload);
 
   @override
-  Future<void> onData(
-      Map<String, dynamic> event, IOWebSocketChannel channel) async {
-    switch (event['type']) {
+  Future<void> onData(ChannelEvent event, IOWebSocketChannel channel) async {
+    switch (event.type) {
       case 'request':
         channel.sink.add(encode('response', {'key': 'value'}));
         break;
     }
   }
 }
+
 ```
 
 * 사용

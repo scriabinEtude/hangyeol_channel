@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:hangyeol_channel/channel_event.dart';
 import 'package:web_socket_channel/io.dart';
 
 abstract class HangyeolChannelInterface {
@@ -57,10 +58,15 @@ abstract class HangyeolChannelInterface {
     };
   }
 
-  Future<void> onData(Map<String, dynamic> event, IOWebSocketChannel channel);
+  Future<void> onData(ChannelEvent event, IOWebSocketChannel channel);
   void onDataParser(dynamic event, IOWebSocketChannel channel) {
     Map<String, dynamic> parsedEvent = jsonDecode(event)['data'];
-    onData(parsedEvent, channel);
+    onData(
+        ChannelEvent(
+          parsedEvent['type'],
+          parsedEvent['message'],
+        ),
+        channel);
   }
 
   void onError(dynamic error) {
