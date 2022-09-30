@@ -1,8 +1,8 @@
 import 'package:hangyeol_channel/hangyeol_channel.dart';
 import 'package:web_socket_channel/io.dart';
 
-class TestChannel extends HangyeolChannelInterface {
-  TestChannel({
+class SampleChannel extends HangyeolChannelInterface {
+  SampleChannel({
     required String url,
     required Map<String, Object> payload,
   }) : super(url, payload);

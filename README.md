@@ -11,29 +11,46 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages). 
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+Easy channel connect implementation util
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+onData() 만 override하면 끝!
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+1. HangyeolChannelInterface 클래스를 상속받은 클래스 작성
+2. onData 메서드 event객체에 통신 내용이 들어온다. 로직을 작성하자
+3. 클래스 인스턴스를 만들고 .connet() 하면 연결 완료
 
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
 
+* 클래스 정의
 ```dart
-const like = 'sample';
+class SampleChannel extends HangyeolChannelInterface {
+  SampleChannel({
+    required String url,
+    required Map<String, Object> payload,
+  }) : super(url, payload);
+
+  @override
+  Future<void> onData(
+      Map<String, dynamic> event, IOWebSocketChannel channel) async {
+    switch (event['type']) {
+      case 'request':
+        channel.sink.add(encode('response', {'key': 'value'}));
+        break;
+    }
+  }
+}
 ```
 
-## Additional information
+* 사용
+```dart
+final channel = SampleChannel(
+    url: 'your host', payload: {'required': 'values', 'on every': 'send'});
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+channel.connect();
+channel.exit();
+```

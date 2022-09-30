@@ -2,7 +2,7 @@ import 'package:example/test_channel.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  final channel = TestChannel(
+  final channel = SampleChannel(
       url: 'your host', payload: {'required': 'values', 'on every': 'send'});
 
   channel.connect();
