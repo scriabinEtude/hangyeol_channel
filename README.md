@@ -52,5 +52,6 @@ final channel = SampleChannel(
     url: 'your host', payload: {'required': 'values', 'on every': 'send'});
 
 channel.connect();
+channel.add('send', {'key': 'value'});
 channel.exit();
 ```

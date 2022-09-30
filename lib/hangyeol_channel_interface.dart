@@ -39,11 +39,15 @@ abstract class HangyeolChannelInterface {
 
   ///```
   ///
-  /// 데이터를 소켓에 보낼때 encode를 사용한다.
+  /// 데이터를 소켓에 보낼 때 사용.
   ///
   /// ex)
-  /// channel.sink.add(encode('send', data.toMap()));
+  /// add('send', data.toMap());
   ///```
+  void add(String type, [Map<String, dynamic>? message]) {
+    channel?.sink.add(encode(type, message));
+  }
+
   String encode(String type, [Map<String, dynamic>? message]) {
     return jsonEncode({
       'type': type,

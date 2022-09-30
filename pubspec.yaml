@@ -1,6 +1,6 @@
 name: hangyeol_channel
 description: easy channel connect implementation util.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/scriabinEtude/hangyeol_channel
 
 environment:
