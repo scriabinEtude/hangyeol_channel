@@ -12,3 +12,6 @@
 
 ## 0.0.5
 * method : logging parameter
+
+## 0.0.6
+* ChannelEvent.data is nullable
