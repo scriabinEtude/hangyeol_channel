@@ -55,3 +55,24 @@ channel.connect();
 channel.add('send', {'key': 'value'});
 channel.exit();
 ```
+
+* logging
+```dart
+class LogingChannel extends HangyeolChannelInterface {
+    ...
+
+    @override
+    void log(Map<String, dynamic> event){
+        // your logging stratage;
+        // defualt : print(event);
+    }
+}
+
+
+final channel = LogingChannel(
+    url: 'your host', 
+    payload: {'required': 'values', 'on every': 'send'},
+    logging: true,
+);
+
+```

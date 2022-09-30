@@ -7,12 +7,14 @@ abstract class HangyeolChannelInterface {
   final String _url;
   final Map<String, Object> _payload;
   final bool? cancelOnError;
+  final bool? logging;
   IOWebSocketChannel? channel;
 
   HangyeolChannelInterface(
     this._url,
     this._payload, {
     this.cancelOnError,
+    this.logging,
   });
 
   void connect() {
@@ -63,8 +65,14 @@ abstract class HangyeolChannelInterface {
   }
 
   Future<void> onData(ChannelEvent event, IOWebSocketChannel channel);
+
   void onDataParser(dynamic event, IOWebSocketChannel channel) {
     Map<String, dynamic> parsedEvent = jsonDecode(event)['data'];
+
+    if (logging == true) {
+      log(parsedEvent);
+    }
+
     onData(
         ChannelEvent(
           parsedEvent['type'],
@@ -78,4 +86,8 @@ abstract class HangyeolChannelInterface {
   }
 
   void onDone() {}
+
+  void log(Map<String, dynamic> event) {
+    print(event);
+  }
 }

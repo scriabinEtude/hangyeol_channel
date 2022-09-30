@@ -9,3 +9,6 @@
 
 ## 0.0.4
 * method : add
+
+## 0.0.5
+* method : logging parameter
